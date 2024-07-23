@@ -99,5 +99,6 @@ $dati = json_decode(<<<JSON
 );
 
 Route::view('tabula', 'tabula', ['products'=>$dati])->middleware(['auth', 'verified'])->name('tabula');
+Route::view('tabula2', 'tabula2', ['products'=>$dati])->middleware(['auth', 'verified'])->name('tabula2');
 
 require __DIR__.'/auth.php';
