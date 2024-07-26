@@ -6,6 +6,7 @@ use App\Models\Product;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\View\View; 
 
 class ProductController extends Controller
@@ -15,7 +16,9 @@ class ProductController extends Controller
      */
     public function index(): View 
     {
-        return view('products.index');
+        return view('products.index', [
+            'products' => Product::with('user')->latest()->get(),
+        ]);
     }
 
     /**
@@ -54,24 +57,43 @@ class ProductController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Product $product)
+    public function edit(Product $product): View
     {
-        //
+        Gate::authorize('update', $product);
+ 
+        return view('products.edit', [
+            'product' => $product,
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Product $product)
+    public function update(Request $request, Product $product): RedirectResponse
     {
-        //
+        Gate::authorize('update', $product);
+ 
+        $validated = $request->validate([
+            'name' => 'required|string|max:255',
+            'description' => 'required|string|max:1000',
+            'price' => 'required|numeric',
+            'quantity' => 'required|integer',
+        ]);
+ 
+        $product->update($validated);
+ 
+        return redirect(route('products.index'));
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Product $product)
+    public function destroy(Product $product): RedirectResponse
     {
-        //
+        Gate::authorize('delete', $product);
+ 
+        $product->delete();
+ 
+        return redirect(route('products.index'));
     }
 }
