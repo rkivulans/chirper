@@ -23,8 +23,8 @@ Route::resource('chirps', ChirpController::class)
     ->only(['index', 'store', 'edit', 'update', 'destroy'])
     ->middleware(['auth', 'verified']);
 
-Route::resource('products', ProductController::class)
-    ->only(['index', 'store'])
+    Route::resource('products', ProductController::class)
+    ->only(['index', 'store', 'edit', 'update', 'destroy'])
     ->middleware(['auth', 'verified']);
 
 $dati = json_decode(<<<JSON
