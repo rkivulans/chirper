@@ -11,52 +11,68 @@
                             <thead class="bg-gray-50">
                                 <tr>
                                     <th scope="col" class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6">
-                                        <a href="{{ route('products.index', array_merge(request()->query(), ['sort' => 'name', 'direction' => request('sort') === 'name' && request('direction') === 'asc' ? 'desc' : 'asc'])) }}">
-                                            Prece
-                                            @if(request('sort') === 'name')
-                                                @if(request('direction') === 'asc')
+                                        @if ($sortField === 'name')
+                                            <a href="{{ route('products.index', ['sort' => 'name', 'direction' => $sortDirection === 'asc' ? 'desc' : 'asc']) }}">
+                                                Prece
+                                                @if ($sortDirection === 'asc')
                                                     &uarr;
                                                 @else
                                                     &darr;
                                                 @endif
-                                            @endif
-                                        </a>
+                                            </a>
+                                        @else
+                                            <a href="{{ route('products.index', ['sort' => 'name', 'direction' => 'asc']) }}">
+                                                Prece
+                                            </a>
+                                        @endif
                                     </th>
                                     <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
-                                        <a href="{{ route('products.index', array_merge(request()->query(), ['sort' => 'description', 'direction' => request('sort') === 'description' && request('direction') === 'asc' ? 'desc' : 'asc'])) }}">
-                                            Apraksts
-                                            @if(request('sort') === 'description')
-                                                @if(request('direction') === 'asc')
+                                        @if ($sortField === 'description')
+                                            <a href="{{ route('products.index', ['sort' => 'description', 'direction' => $sortDirection === 'asc' ? 'desc' : 'asc']) }}">
+                                                Apraksts
+                                                @if ($sortDirection === 'asc')
                                                     &uarr;
                                                 @else
                                                     &darr;
                                                 @endif
-                                            @endif
-                                        </a>
+                                            </a>
+                                        @else
+                                            <a href="{{ route('products.index', ['sort' => 'description', 'direction' => 'asc']) }}">
+                                                Apraksts
+                                            </a>
+                                        @endif
                                     </th>
                                     <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
-                                        <a href="{{ route('products.index', array_merge(request()->query(), ['sort' => 'price', 'direction' => request('sort') === 'price' && request('direction') === 'asc' ? 'desc' : 'asc'])) }}">
-                                            Cena
-                                            @if(request('sort') === 'price')
-                                                @if(request('direction') === 'asc')
+                                        @if ($sortField === 'price')
+                                            <a href="{{ route('products.index', ['sort' => 'price', 'direction' => $sortDirection === 'asc' ? 'desc' : 'asc']) }}">
+                                                Cena
+                                                @if ($sortDirection === 'asc')
                                                     &uarr;
                                                 @else
                                                     &darr;
                                                 @endif
-                                            @endif
-                                        </a>
+                                            </a>
+                                        @else
+                                            <a href="{{ route('products.index', ['sort' => 'price', 'direction' => 'asc']) }}">
+                                                Cena
+                                            </a>
+                                        @endif
                                     </th>
                                     <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
-                                        <a href="{{ route('products.index', array_merge(request()->query(), ['sort' => 'quantity', 'direction' => request('sort') === 'quantity' && request('direction') === 'asc' ? 'desc' : 'asc'])) }}">
-                                            Skaits
-                                            @if(request('sort') === 'quantity')
-                                                @if(request('direction') === 'asc')
+                                        @if ($sortField === 'quantity')
+                                            <a href="{{ route('products.index', ['sort' => 'quantity', 'direction' => $sortDirection === 'asc' ? 'desc' : 'asc']) }}">
+                                                Skaits
+                                                @if ($sortDirection === 'asc')
                                                     &uarr;
                                                 @else
                                                     &darr;
                                                 @endif
-                                            @endif
-                                        </a>
+                                            </a>
+                                        @else
+                                            <a href="{{ route('products.index', ['sort' => 'quantity', 'direction' => 'asc']) }}">
+                                                Skaits
+                                            </a>
+                                        @endif
                                     </th>
                                     <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Pārdevējs</th>
                                     <th scope="col" class="relative py-3.5 pl-3 pr-4 sm:pr-6">
@@ -74,9 +90,9 @@
                                         <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
                                             Nav
                                             @unless ($product->created_at->eq($product->updated_at))
-                                            <small class="text-sm text-gray-600"> &middot; {{ __('edited') }}</small>
+                                                <small class="text-sm text-gray-600"> &middot; {{ __('edited') }}</small>
                                             @endunless
-                                        </td>                                       
+                                        </td>
                                         <td class="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
                                             @if ($product->user->is(auth()->user()))
                                                 <x-dropdown>
