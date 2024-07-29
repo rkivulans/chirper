@@ -15,18 +15,20 @@ class ProductController extends Controller
      * Display a listing of the resource.
      */
     public function index(Request $request): View
-    {
-        $sortField = $request->input('sort', 'created_at'); // default sort field
-        $sortDirection = $request->input('direction', 'desc'); // default sort direction
+{
+    $sortField = $request->input('sort', 'created_at'); // default sort field
+    $sortDirection = $request->input('direction', 'desc'); // default sort direction
 
-        $products = Product::with('user')
-            ->orderBy($sortField, $sortDirection)
-            ->get();
+    $products = Product::with('user')
+        ->orderBy($sortField, $sortDirection)
+        ->get();
 
-        return view('products.index', [
-            'products' => $products,
-        ]);
-    }
+    return view('products.index', [
+        'products' => $products,
+        'sortField' => $sortField,
+        'sortDirection' => $sortDirection,
+    ]);
+}
 
     /**
      * Show the form for creating a new resource.
@@ -104,6 +106,3 @@ class ProductController extends Controller
         return redirect(route('products.index'));
     }
 }
-
-
-
