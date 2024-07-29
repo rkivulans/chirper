@@ -7,17 +7,24 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Gate;
-use Illuminate\View\View; 
+use Illuminate\View\View;
 
 class ProductController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index(): View 
+    public function index(Request $request): View
     {
+        $sortField = $request->input('sort', 'created_at'); // default sort field
+        $sortDirection = $request->input('direction', 'desc'); // default sort direction
+
+        $products = Product::with('user')
+            ->orderBy($sortField, $sortDirection)
+            ->get();
+
         return view('products.index', [
-            'products' => Product::with('user')->latest()->get(),
+            'products' => $products,
         ]);
     }
 
@@ -97,3 +104,6 @@ class ProductController extends Controller
         return redirect(route('products.index'));
     }
 }
+
+
+
