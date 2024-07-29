@@ -10,10 +10,54 @@
                         <table class="min-w-full divide-y divide-gray-300">
                             <thead class="bg-gray-50">
                                 <tr>
-                                    <th scope="col" class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6">Prece</th>
-                                    <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Apraksts</th>
-                                    <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Cena</th>
-                                    <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Skaits</th>
+                                    <th scope="col" class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6">
+                                        <a href="{{ route('products.index', array_merge(request()->query(), ['sort' => 'name', 'direction' => request('sort') === 'name' && request('direction') === 'asc' ? 'desc' : 'asc'])) }}">
+                                            Prece
+                                            @if(request('sort') === 'name')
+                                                @if(request('direction') === 'asc')
+                                                    &uarr;
+                                                @else
+                                                    &darr;
+                                                @endif
+                                            @endif
+                                        </a>
+                                    </th>
+                                    <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
+                                        <a href="{{ route('products.index', array_merge(request()->query(), ['sort' => 'description', 'direction' => request('sort') === 'description' && request('direction') === 'asc' ? 'desc' : 'asc'])) }}">
+                                            Apraksts
+                                            @if(request('sort') === 'description')
+                                                @if(request('direction') === 'asc')
+                                                    &uarr;
+                                                @else
+                                                    &darr;
+                                                @endif
+                                            @endif
+                                        </a>
+                                    </th>
+                                    <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
+                                        <a href="{{ route('products.index', array_merge(request()->query(), ['sort' => 'price', 'direction' => request('sort') === 'price' && request('direction') === 'asc' ? 'desc' : 'asc'])) }}">
+                                            Cena
+                                            @if(request('sort') === 'price')
+                                                @if(request('direction') === 'asc')
+                                                    &uarr;
+                                                @else
+                                                    &darr;
+                                                @endif
+                                            @endif
+                                        </a>
+                                    </th>
+                                    <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
+                                        <a href="{{ route('products.index', array_merge(request()->query(), ['sort' => 'quantity', 'direction' => request('sort') === 'quantity' && request('direction') === 'asc' ? 'desc' : 'asc'])) }}">
+                                            Skaits
+                                            @if(request('sort') === 'quantity')
+                                                @if(request('direction') === 'asc')
+                                                    &uarr;
+                                                @else
+                                                    &darr;
+                                                @endif
+                                            @endif
+                                        </a>
+                                    </th>
                                     <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Pārdevējs</th>
                                     <th scope="col" class="relative py-3.5 pl-3 pr-4 sm:pr-6">
                                         <span class="sr-only">Edit</span>
@@ -34,29 +78,29 @@
                                             @endunless
                                         </td>                                       
                                         <td class="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
-                                        @if ($product->user->is(auth()->user()))
-                                            <x-dropdown>
-                                                <x-slot name="trigger">
-                                                    <button class="text-gray-500 hover:text-gray-700 focus:outline-none">
-                                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
-                                                            <path d="M6 10a2 2 0 11-4 0 2 2 0 014 0zM12 10a2 2 0 11-4 0 2 2 0 014 0zM16 12a2 2 0 100-4 2 2 0 000 4z" />
-                                                        </svg>
-                                                    </button>
-                                                </x-slot>
-                                                <x-slot name="content">
-                                                    <x-dropdown-link :href="route('products.edit', $product->id)">
-                                                        {{ __('Edit') }}
-                                                    </x-dropdown-link>
-                                                    <form method="POST" action="{{ route('products.destroy', $product->id) }}">
-                                                        @csrf
-                                                        @method('delete')
-                                                        <x-dropdown-link href="#" onclick="event.preventDefault(); this.closest('form').submit();">
-                                                            {{ __('Delete') }}
+                                            @if ($product->user->is(auth()->user()))
+                                                <x-dropdown>
+                                                    <x-slot name="trigger">
+                                                        <button class="text-gray-500 hover:text-gray-700 focus:outline-none">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
+                                                                <path d="M6 10a2 2 0 11-4 0 2 2 0 014 0zM12 10a2 2 0 11-4 0 2 2 0 014 0zM16 12a2 2 0 100-4 2 2 0 000 4z" />
+                                                            </svg>
+                                                        </button>
+                                                    </x-slot>
+                                                    <x-slot name="content">
+                                                        <x-dropdown-link :href="route('products.edit', $product->id)">
+                                                            {{ __('Edit') }}
                                                         </x-dropdown-link>
-                                                    </form>
-                                                </x-slot>
-                                            </x-dropdown>
-                                        @endif
+                                                        <form method="POST" action="{{ route('products.destroy', $product->id) }}">
+                                                            @csrf
+                                                            @method('delete')
+                                                            <x-dropdown-link href="#" onclick="event.preventDefault(); this.closest('form').submit();">
+                                                                {{ __('Delete') }}
+                                                            </x-dropdown-link>
+                                                        </form>
+                                                    </x-slot>
+                                                </x-dropdown>
+                                            @endif
                                         </td>
                                     </tr>
                                 @endforeach
@@ -92,6 +136,7 @@
             <div class="max-w-2xl mx-auto p-2 sm:p-3 lg:p-4">
                 <input
                     type="number"
+                    step="0.01"
                     name="price"
                     placeholder="{{ __('Cena') }}"
                     class="block w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm"
