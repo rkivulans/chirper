@@ -13,51 +13,29 @@
                                     <th scope="col" class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6">
                                         <a href="{{ route('products.index', ['sort' => 'name', 'direction' => $sortField === 'name' && $sortDirection === 'asc' ? 'desc' : 'asc']) }}">
                                             Prece
-                                            @if ($sortField === 'name')
-                                                @if ($sortDirection === 'asc')
-                                                    &uarr;
-                                                @else
-                                                    &darr;
-                                                @endif
-                                            @else
-                                                &uarr;
-                                            @endif
+                                            @if ($sortField === 'name' && $sortDirection === 'asc') ↑ @endif
+                                            @if ($sortField === 'name' && $sortDirection === 'desc') ↓ @endif
                                         </a>
                                     </th>
                                     <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
                                         <a href="{{ route('products.index', ['sort' => 'description', 'direction' => $sortField === 'description' && $sortDirection === 'asc' ? 'desc' : 'asc']) }}">
                                             Apraksts
-                                            @if ($sortField === 'description')
-                                                @if ($sortDirection === 'asc')
-                                                    &uarr;
-                                                @else
-                                                    &darr;
-                                                @endif
-                                            @endif
+                                            @if ($sortField === 'description' && $sortDirection === 'asc') ↑ @endif
+                                            @if ($sortField === 'description' && $sortDirection === 'desc') ↓ @endif
                                         </a>
                                     </th>
                                     <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
                                         <a href="{{ route('products.index', ['sort' => 'price', 'direction' => $sortField === 'price' && $sortDirection === 'asc' ? 'desc' : 'asc']) }}">
                                             Cena
-                                            @if ($sortField === 'price')
-                                                @if ($sortDirection === 'asc')
-                                                    &uarr;
-                                                @else
-                                                    &darr;
-                                                @endif
-                                            @endif
+                                            @if ($sortField === 'price' && $sortDirection === 'asc') ↑ @endif
+                                            @if ($sortField === 'price' && $sortDirection === 'desc') ↓ @endif
                                         </a>
                                     </th>
                                     <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
                                         <a href="{{ route('products.index', ['sort' => 'quantity', 'direction' => $sortField === 'quantity' && $sortDirection === 'asc' ? 'desc' : 'asc']) }}">
                                             Skaits
-                                            @if ($sortField === 'quantity')
-                                                @if ($sortDirection === 'asc')
-                                                    &uarr;
-                                                @else
-                                                    &darr;
-                                                @endif
-                                            @endif
+                                            @if ($sortField === 'quantity' && $sortDirection === 'asc') ↑ @endif
+                                            @if ($sortField === 'quantity' && $sortDirection === 'desc') ↓ @endif
                                         </a>
                                     </th>
                                     <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Pārdevējs</th>
@@ -88,7 +66,7 @@
                                 @endforeach
                             </tbody>
                         </table>
-                    </div>        
+                    </div>
                 </div>
             </div>
         </div>
