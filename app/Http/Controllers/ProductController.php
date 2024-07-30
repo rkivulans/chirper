@@ -16,8 +16,8 @@ class ProductController extends Controller
      */
     public function index(Request $request): View
 {
-    $sortField = $request->input('sort', 'created_at'); // default sort field
-    $sortDirection = $request->input('direction', 'desc'); // default sort direction
+    $sortField = $request->input('sort', 'name'); // default sort field
+    $sortDirection = $request->input('direction', 'asc'); // default sort direction
 
     $products = Product::with('user')
         ->orderBy($sortField, $sortDirection)

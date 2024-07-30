@@ -11,68 +11,54 @@
                             <thead class="bg-gray-50">
                                 <tr>
                                     <th scope="col" class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6">
-                                        @if ($sortField === 'name')
-                                            <a href="{{ route('products.index', ['sort' => 'name', 'direction' => $sortDirection === 'asc' ? 'desc' : 'asc']) }}">
-                                                Prece
+                                        <a href="{{ route('products.index', ['sort' => 'name', 'direction' => $sortField === 'name' && $sortDirection === 'asc' ? 'desc' : 'asc']) }}">
+                                            Prece
+                                            @if ($sortField === 'name')
                                                 @if ($sortDirection === 'asc')
                                                     &uarr;
                                                 @else
                                                     &darr;
                                                 @endif
-                                            </a>
-                                        @else
-                                            <a href="{{ route('products.index', ['sort' => 'name', 'direction' => 'asc']) }}">
-                                                Prece
-                                            </a>
-                                        @endif
+                                            @else
+                                                &uarr;
+                                            @endif
+                                        </a>
                                     </th>
                                     <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
-                                        @if ($sortField === 'description')
-                                            <a href="{{ route('products.index', ['sort' => 'description', 'direction' => $sortDirection === 'asc' ? 'desc' : 'asc']) }}">
-                                                Apraksts
+                                        <a href="{{ route('products.index', ['sort' => 'description', 'direction' => $sortField === 'description' && $sortDirection === 'asc' ? 'desc' : 'asc']) }}">
+                                            Apraksts
+                                            @if ($sortField === 'description')
                                                 @if ($sortDirection === 'asc')
                                                     &uarr;
                                                 @else
                                                     &darr;
                                                 @endif
-                                            </a>
-                                        @else
-                                            <a href="{{ route('products.index', ['sort' => 'description', 'direction' => 'asc']) }}">
-                                                Apraksts
-                                            </a>
-                                        @endif
+                                            @endif
+                                        </a>
                                     </th>
                                     <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
-                                        @if ($sortField === 'price')
-                                            <a href="{{ route('products.index', ['sort' => 'price', 'direction' => $sortDirection === 'asc' ? 'desc' : 'asc']) }}">
-                                                Cena
+                                        <a href="{{ route('products.index', ['sort' => 'price', 'direction' => $sortField === 'price' && $sortDirection === 'asc' ? 'desc' : 'asc']) }}">
+                                            Cena
+                                            @if ($sortField === 'price')
                                                 @if ($sortDirection === 'asc')
                                                     &uarr;
                                                 @else
                                                     &darr;
                                                 @endif
-                                            </a>
-                                        @else
-                                            <a href="{{ route('products.index', ['sort' => 'price', 'direction' => 'asc']) }}">
-                                                Cena
-                                            </a>
-                                        @endif
+                                            @endif
+                                        </a>
                                     </th>
                                     <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
-                                        @if ($sortField === 'quantity')
-                                            <a href="{{ route('products.index', ['sort' => 'quantity', 'direction' => $sortDirection === 'asc' ? 'desc' : 'asc']) }}">
-                                                Skaits
+                                        <a href="{{ route('products.index', ['sort' => 'quantity', 'direction' => $sortField === 'quantity' && $sortDirection === 'asc' ? 'desc' : 'asc']) }}">
+                                            Skaits
+                                            @if ($sortField === 'quantity')
                                                 @if ($sortDirection === 'asc')
                                                     &uarr;
                                                 @else
                                                     &darr;
                                                 @endif
-                                            </a>
-                                        @else
-                                            <a href="{{ route('products.index', ['sort' => 'quantity', 'direction' => 'asc']) }}">
-                                                Skaits
-                                            </a>
-                                        @endif
+                                            @endif
+                                        </a>
                                     </th>
                                     <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Pārdevējs</th>
                                     <th scope="col" class="relative py-3.5 pl-3 pr-4 sm:pr-6">
@@ -87,35 +73,15 @@
                                         <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{ $product->description }}</td>
                                         <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{ $product->price }}</td>
                                         <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{ $product->quantity }}</td>
-                                        <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                                            Nav
-                                            @unless ($product->created_at->eq($product->updated_at))
-                                                <small class="text-sm text-gray-600"> &middot; {{ __('edited') }}</small>
-                                            @endunless
-                                        </td>
+                                        <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{ $product->user->name }}</td>
                                         <td class="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
                                             @if ($product->user->is(auth()->user()))
-                                                <x-dropdown>
-                                                    <x-slot name="trigger">
-                                                        <button class="text-gray-500 hover:text-gray-700 focus:outline-none">
-                                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
-                                                                <path d="M6 10a2 2 0 11-4 0 2 2 0 014 0zM12 10a2 2 0 11-4 0 2 2 0 014 0zM16 12a2 2 0 100-4 2 2 0 000 4z" />
-                                                            </svg>
-                                                        </button>
-                                                    </x-slot>
-                                                    <x-slot name="content">
-                                                        <x-dropdown-link :href="route('products.edit', $product->id)">
-                                                            {{ __('Edit') }}
-                                                        </x-dropdown-link>
-                                                        <form method="POST" action="{{ route('products.destroy', $product->id) }}">
-                                                            @csrf
-                                                            @method('delete')
-                                                            <x-dropdown-link href="#" onclick="event.preventDefault(); this.closest('form').submit();">
-                                                                {{ __('Delete') }}
-                                                            </x-dropdown-link>
-                                                        </form>
-                                                    </x-slot>
-                                                </x-dropdown>
+                                                <a href="{{ route('products.edit', $product->id) }}" class="text-indigo-600 hover:text-indigo-900">Edit<span class="sr-only">, {{ $product->name }}</span></a>
+                                                <form method="POST" action="{{ route('products.destroy', $product->id) }}" style="display: inline;">
+                                                    @csrf
+                                                    @method('delete')
+                                                    <button type="submit" class="text-red-600 hover:text-red-900 ml-2">Delete<span class="sr-only">, {{ $product->name }}</span></button>
+                                                </form>
                                             @endif
                                         </td>
                                     </tr>
