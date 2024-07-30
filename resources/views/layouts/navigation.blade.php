@@ -18,6 +18,7 @@
                     <x-nav-link :href="route('chirps.index')" :active="request()->routeIs('chirps.index')">
                         {{ __('Chirps') }}
                     </x-nav-link>
+                    <!-- Shop link -->
                     <x-nav-link :href="route('products.index')" :active="request()->routeIs('products.index')">
                         {{ __('Shop') }}
                     </x-nav-link>
@@ -79,6 +80,7 @@
             <x-responsive-nav-link :href="route('chirps.index')" :active="request()->routeIs('chirps.index')">
                 {{ __('Chirps') }}
             </x-responsive-nav-link>
+            <!-- Shop link -->
             <x-responsive-nav-link :href="route('products.index')" :active="request()->routeIs('products.index')">
                 {{ __('Shop') }}
             </x-responsive-nav-link>
