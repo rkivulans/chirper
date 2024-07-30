@@ -15,7 +15,7 @@ class SellerController extends Controller
      */
     public function index(): View
     {
-        $sellers = User::has('products')->get();
+        $sellers = User::orderBy('name')->get();
 
         return view('sellers.index', compact('sellers'));
     }
