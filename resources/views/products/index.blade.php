@@ -46,11 +46,16 @@
                             </thead>
                             <tbody class="divide-y divide-gray-200 bg-white">
                                 @foreach ($products as $product)
-                                    <tr>
-                                        <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6">{{ $product->name }}</td>
+                                    <tr class="{{ $product->quantity == 0 ? 'bg-gray-100' : '' }}">
+                                        <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6">
+                                            {{ $product->name }}
+                                            @if ($product->quantity == 0)
+                                                <span class="text-red-600">(!)</span>
+                                            @endif
+                                        </td>
                                         <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{ $product->description }}</td>
                                         <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{ $product->price }}</td>
-                                        <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{ $product->quantity }}</td>
+                                        <td class="whitespace-nowrap px-3 py-4 text-sm {{ $product->quantity == 0 ? 'text-gray-500' : 'text-gray-900' }}">{{ $product->quantity }}</td>
                                         <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{ $product->user->name }}</td>
                                         <td class="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
                                             @if ($product->user->is(auth()->user()))
@@ -70,49 +75,5 @@
                 </div>
             </div>
         </div>
-    </div>
-    <div class="max-w-2xl mx-auto p-2 sm:p-3 lg:p-4">
-        <h1 class="text-2xl font-bold mb-4">{{ __('Pievienot jaunu') }}</h1>
-    </div>
-    <div class="max-w-2xl mx-auto p-2 sm:p-3 lg:p-4">
-        <form method="POST" action="{{ route('products.store') }}">
-            @csrf
-            <div class="max-w-2xl mx-auto p-2 sm:p-3 lg:p-4">
-                <input
-                    name="name"
-                    placeholder="{{ __('Prece') }}"
-                    class="block w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm"
-                    value="{{ old('name') }}">
-                <x-input-error :messages="$errors->get('name')" class="mt-2" />
-            </div>
-            <div class="max-w-2xl mx-auto p-2 sm:p-3 lg:p-4">
-                <input
-                    name="description"
-                    placeholder="{{ __('Apraksts') }}"
-                    class="block w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm"
-                    value="{{ old('description') }}">
-                <x-input-error :messages="$errors->get('description')" class="mt-2" />
-            </div>
-            <div class="max-w-2xl mx-auto p-2 sm:p-3 lg:p-4">
-                <input
-                    type="number"
-                    step="0.01"
-                    name="price"
-                    placeholder="{{ __('Cena') }}"
-                    class="block w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm"
-                    value="{{ old('price') }}">
-                <x-input-error :messages="$errors->get('price')" class="mt-2" />
-            </div>
-            <div class="max-w-2xl mx-auto p-2 sm:p-3 lg:p-4">
-                <input
-                    type="number"
-                    name="quantity"
-                    placeholder="{{ __('Skaits noliktavā') }}"
-                    class="block w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm"
-                    value="{{ old('quantity') }}">
-                <x-input-error :messages="$errors->get('quantity')" class="mt-2" />
-            </div>
-            <x-primary-button class="mt-4">{{ __('Pievienot') }}</x-primary-button>
-        </form>
     </div>
 </x-app-layout>

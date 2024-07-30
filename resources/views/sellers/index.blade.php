@@ -10,8 +10,20 @@
                         <table class="min-w-full divide-y divide-gray-300">
                             <thead class="bg-gray-50">
                                 <tr>
-                                    <th scope="col" class="py-3.5 px-3 text-left text-sm font-semibold text-gray-900">Vārds</th>
-                                    <th scope="col" class="py-3.5 px-3 text-left text-sm font-semibold text-gray-900">Epasts</th>
+                                    <th scope="col" class="py-3.5 px-3 text-left text-sm font-semibold text-gray-900">
+                                        <a href="{{ route('sellers.index', ['sort' => 'name', 'direction' => $sortField === 'name' && $sortDirection === 'asc' ? 'desc' : 'asc']) }}">
+                                            Vārds
+                                            @if ($sortField === 'name' && $sortDirection === 'asc') ↑ @endif
+                                            @if ($sortField === 'name' && $sortDirection === 'desc') ↓ @endif
+                                        </a>
+                                    </th>
+                                    <th scope="col" class="py-3.5 px-3 text-left text-sm font-semibold text-gray-900">
+                                        <a href="{{ route('sellers.index', ['sort' => 'email', 'direction' => $sortField === 'email' && $sortDirection === 'asc' ? 'desc' : 'asc']) }}">
+                                            Epasts
+                                            @if ($sortField === 'email' && $sortDirection === 'asc') ↑ @endif
+                                            @if ($sortField === 'email' && $sortDirection === 'desc') ↓ @endif
+                                        </a>
+                                    </th>
                                 </tr>
                             </thead>
                             <tbody class="divide-y divide-gray-200 bg-white">

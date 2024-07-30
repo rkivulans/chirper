@@ -11,19 +11,48 @@
                         <table class="min-w-full divide-y divide-gray-300">
                             <thead class="bg-gray-50">
                                 <tr>
-                                    <th scope="col" class="py-3.5 px-3 text-left text-sm font-semibold text-gray-900">Prece</th>
-                                    <th scope="col" class="py-3.5 px-3 text-left text-sm font-semibold text-gray-900">Apraksts</th>
-                                    <th scope="col" class="py-3.5 px-3 text-left text-sm font-semibold text-gray-900">Cena</th>
-                                    <th scope="col" class="py-3.5 px-3 text-left text-sm font-semibold text-gray-900">Skaits</th>
+                                    <th scope="col" class="py-3.5 px-3 text-left text-sm font-semibold text-gray-900">
+                                        <a href="{{ route('sellers.show', ['seller' => $seller->id, 'sort' => 'name', 'direction' => $sortField === 'name' && $sortDirection === 'asc' ? 'desc' : 'asc']) }}">
+                                            Prece
+                                            @if ($sortField === 'name' && $sortDirection === 'asc') ↑ @endif
+                                            @if ($sortField === 'name' && $sortDirection === 'desc') ↓ @endif
+                                        </a>
+                                    </th>
+                                    <th scope="col" class="py-3.5 px-3 text-left text-sm font-semibold text-gray-900">
+                                        <a href="{{ route('sellers.show', ['seller' => $seller->id, 'sort' => 'description', 'direction' => $sortField === 'description' && $sortDirection === 'asc' ? 'desc' : 'asc']) }}">
+                                            Apraksts
+                                            @if ($sortField === 'description' && $sortDirection === 'asc') ↑ @endif
+                                            @if ($sortField === 'description' && $sortDirection === 'desc') ↓ @endif
+                                        </a>
+                                    </th>
+                                    <th scope="col" class="py-3.5 px-3 text-left text-sm font-semibold text-gray-900">
+                                        <a href="{{ route('sellers.show', ['seller' => $seller->id, 'sort' => 'price', 'direction' => $sortField === 'price' && $sortDirection === 'asc' ? 'desc' : 'asc']) }}">
+                                            Cena
+                                            @if ($sortField === 'price' && $sortDirection === 'asc') ↑ @endif
+                                            @if ($sortField === 'price' && $sortDirection === 'desc') ↓ @endif
+                                        </a>
+                                    </th>
+                                    <th scope="col" class="py-3.5 px-3 text-left text-sm font-semibold text-gray-900">
+                                        <a href="{{ route('sellers.show', ['seller' => $seller->id, 'sort' => 'quantity', 'direction' => $sortField === 'quantity' && $sortDirection === 'asc' ? 'desc' : 'asc']) }}">
+                                            Skaits
+                                            @if ($sortField === 'quantity' && $sortDirection === 'asc') ↑ @endif
+                                            @if ($sortField === 'quantity' && $sortDirection === 'desc') ↓ @endif
+                                        </a>
+                                    </th>
                                 </tr>
                             </thead>
                             <tbody class="divide-y divide-gray-200 bg-white">
                                 @foreach ($products as $product)
-                                    <tr>
-                                        <td class="py-4 px-3 text-sm font-medium text-gray-900">{{ $product->name }}</td>
+                                    <tr class="{{ $product->quantity == 0 ? 'bg-gray-100' : '' }}">
+                                        <td class="py-4 px-3 text-sm font-medium text-gray-900">
+                                            {{ $product->name }}
+                                            @if ($product->quantity == 0)
+                                                <span class="text-red-600">(!)</span>
+                                            @endif
+                                        </td>
                                         <td class="py-4 px-3 text-sm text-gray-500">{{ $product->description }}</td>
                                         <td class="py-4 px-3 text-sm text-gray-500">{{ $product->price }}</td>
-                                        <td class="py-4 px-3 text-sm text-gray-500">{{ $product->quantity }}</td>
+                                        <td class="py-4 px-3 text-sm {{ $product->quantity == 0 ? 'text-gray-500' : 'text-gray-900' }}">{{ $product->quantity }}</td>
                                     </tr>
                                 @endforeach
                             </tbody>

@@ -13,11 +13,14 @@ class SellerController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index(): View
+    public function index(Request $request): View
     {
-        $sellers = User::orderBy('name')->get();
+        $sortField = $request->input('sort', 'name');
+        $sortDirection = $request->input('direction', 'asc');
 
-        return view('sellers.index', compact('sellers'));
+        $sellers = User::orderBy($sortField, $sortDirection)->get();
+
+        return view('sellers.index', compact('sellers', 'sortField', 'sortDirection'));
     }
 
     /**
@@ -39,11 +42,14 @@ class SellerController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(User $seller): View
+    public function show(User $seller, Request $request): View
     {
-        $products = $seller->products;
+        $sortField = $request->input('sort', 'name');
+        $sortDirection = $request->input('direction', 'asc');
 
-        return view('sellers.show', compact('seller', 'products'));
+        $products = $seller->products()->orderBy($sortField, $sortDirection)->get();
+
+        return view('sellers.show', compact('seller', 'products', 'sortField', 'sortDirection'));
     }
 
     /**
