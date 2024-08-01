@@ -12,28 +12,28 @@
                             <thead class="bg-gray-50">
                                 <tr>
                                     <th scope="col" class="py-3.5 px-3 text-left text-sm font-semibold text-gray-900">
-                                        <a href="{{ route('sellers.show', ['seller' => $seller->id, 'sort' => 'name', 'direction' => $sortField === 'name' && $sortDirection === 'asc' ? 'desc' : 'asc']) }}">
+                                        <a href="{{ route('sellers.show', ['seller' => $seller, 'sort' => 'name', 'direction' => $sortField === 'name' && $sortDirection === 'asc' ? 'desc' : 'asc']) }}">
                                             Prece
                                             @if ($sortField === 'name' && $sortDirection === 'asc') ↑ @endif
                                             @if ($sortField === 'name' && $sortDirection === 'desc') ↓ @endif
                                         </a>
                                     </th>
                                     <th scope="col" class="py-3.5 px-3 text-left text-sm font-semibold text-gray-900">
-                                        <a href="{{ route('sellers.show', ['seller' => $seller->id, 'sort' => 'description', 'direction' => $sortField === 'description' && $sortDirection === 'asc' ? 'desc' : 'asc']) }}">
+                                        <a href="{{ route('sellers.show', ['seller' => $seller, 'sort' => 'description', 'direction' => $sortField === 'description' && $sortDirection === 'asc' ? 'desc' : 'asc']) }}">
                                             Apraksts
                                             @if ($sortField === 'description' && $sortDirection === 'asc') ↑ @endif
                                             @if ($sortField === 'description' && $sortDirection === 'desc') ↓ @endif
                                         </a>
                                     </th>
                                     <th scope="col" class="py-3.5 px-3 text-left text-sm font-semibold text-gray-900">
-                                        <a href="{{ route('sellers.show', ['seller' => $seller->id, 'sort' => 'price', 'direction' => $sortField === 'price' && $sortDirection === 'asc' ? 'desc' : 'asc']) }}">
+                                        <a href="{{ route('sellers.show', ['seller' => $seller, 'sort' => 'price', 'direction' => $sortField === 'price' && $sortDirection === 'asc' ? 'desc' : 'asc']) }}">
                                             Cena
                                             @if ($sortField === 'price' && $sortDirection === 'asc') ↑ @endif
                                             @if ($sortField === 'price' && $sortDirection === 'desc') ↓ @endif
                                         </a>
                                     </th>
                                     <th scope="col" class="py-3.5 px-3 text-left text-sm font-semibold text-gray-900">
-                                        <a href="{{ route('sellers.show', ['seller' => $seller->id, 'sort' => 'quantity', 'direction' => $sortField === 'quantity' && $sortDirection === 'asc' ? 'desc' : 'asc']) }}">
+                                        <a href="{{ route('sellers.show', ['seller' => $seller, 'sort' => 'quantity', 'direction' => $sortField === 'quantity' && $sortDirection === 'asc' ? 'desc' : 'asc']) }}">
                                             Skaits
                                             @if ($sortField === 'quantity' && $sortDirection === 'asc') ↑ @endif
                                             @if ($sortField === 'quantity' && $sortDirection === 'desc') ↓ @endif

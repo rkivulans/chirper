@@ -30,7 +30,7 @@
                                 @foreach ($sellers as $seller)
                                     <tr>
                                         <td class="py-4 px-3 text-sm font-medium text-gray-900">
-                                            <a href="{{ route('sellers.show', $seller->id) }}" class="text-indigo-600 hover:text-indigo-900">{{ $seller->name }}</a>
+                                            <a href="{{ route('sellers.show', $seller) }}" class="text-indigo-600 hover:text-indigo-900">{{ $seller->name }}</a>
                                         </td>
                                         <td class="py-4 px-3 text-sm text-gray-500">{{ $seller->email }}</td>
                                     </tr>
