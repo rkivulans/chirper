@@ -74,9 +74,8 @@
                     </div>
                 </div>
             </div>
-            </div>
             <div class="max-w-2xl mx-auto p-2 sm:p-3 lg:p-4">
-                <h1 class="text-2xl font-bold mb-4">{{ __('Pievienot jaunu') }}</h1>
+                    <h1 class="text-2xl font-bold mb-4">{{ __('Pievienot jaunu') }}</h1>
             </div>
             <div class="max-w-2xl mx-auto p-2 sm:p-3 lg:p-4">
                 <form method="POST" action="{{ route('products.store') }}">
