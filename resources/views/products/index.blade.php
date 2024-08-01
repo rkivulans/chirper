@@ -46,19 +46,22 @@
                             </thead>
                             <tbody class="divide-y divide-gray-200 bg-white">
                                 @foreach ($products as $product)
-                                    <tr>
-                                        <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6">{{ $product->name }}</td>
+                                    <tr class="{{ $product->quantity == 0 ? 'bg-gray-100' : '' }}">
+                                        <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6">
+                                            {{ $product->name }}
+                                            <span class="text-red-600">{{ $product->quantity == 0 ? '(!)' : '' }}</span>
+                                        </td>
                                         <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{ $product->description }}</td>
                                         <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{ $product->price }}</td>
-                                        <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{ $product->quantity }}</td>
+                                        <td class="whitespace-nowrap px-3 py-4 text-sm {{ $product->quantity == 0 ? 'text-gray-500' : 'text-gray-900' }}">{{ $product->quantity }}</td>
                                         <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{ $product->user->name }}</td>
                                         <td class="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
                                             @if ($product->user->is(auth()->user()))
-                                                <a href="{{ route('products.edit', $product->id) }}" class="text-indigo-600 hover:text-indigo-900">Edit<span class="sr-only">, {{ $product->name }}</span></a>
-                                                <form method="POST" action="{{ route('products.destroy', $product->id) }}" style="display: inline;">
+                                                <a href="{{ route('products.edit', $product) }}" class="text-indigo-600 hover:text-indigo-900">Edit<span class="sr-only">, {{ $product->name }}</span></a>
+                                                <form method="POST" action="{{ route('products.destroy', $product) }}" class="inline">
                                                     @csrf
                                                     @method('delete')
-                                                    <button type="submit" class="text-red-600 hover:text-red-900 ml-2">Delete<span class="sr-only">, {{ $product->name }}</span></button>
+                                                    <button type="submit" class="text-red-600 hover:text-red-900 ml-2" onclick="return confirm('Vai dzēst {{ $product->name }}?')">Delete<span class="sr-only">, {{ $product->name }}</span></button>
                                                 </form>
                                             @endif
                                         </td>

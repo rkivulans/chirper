@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\SellerController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ChirpController;
 use App\Http\Controllers\ProfileController;
@@ -23,8 +24,12 @@ Route::resource('chirps', ChirpController::class)
     ->only(['index', 'store', 'edit', 'update', 'destroy'])
     ->middleware(['auth', 'verified']);
 
-    Route::resource('products', ProductController::class)
+Route::resource('products', ProductController::class)
     ->only(['index', 'store', 'edit', 'update', 'destroy'])
+    ->middleware(['auth', 'verified']);
+
+Route::resource('sellers', SellerController::class)
+    ->only(['index', 'show'])
     ->middleware(['auth', 'verified']);
 
 require __DIR__.'/auth.php';
