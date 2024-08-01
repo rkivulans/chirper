@@ -46,9 +46,7 @@
                                     <tr class="{{ $product->quantity == 0 ? 'bg-gray-100' : '' }}">
                                         <td class="py-4 px-3 text-sm font-medium text-gray-900">
                                             {{ $product->name }}
-                                            @if ($product->quantity == 0)
-                                                <span class="text-red-600">(!)</span>
-                                            @endif
+                                            <span class="text-red-600">{{ $product->quantity == 0 ? '(!)' : '' }}</span>
                                         </td>
                                         <td class="py-4 px-3 text-sm text-gray-500">{{ $product->description }}</td>
                                         <td class="py-4 px-3 text-sm text-gray-500">{{ $product->price }}</td>
@@ -57,7 +55,7 @@
                                 @endforeach
                             </tbody>
                         </table>
-                    </div>        
+                    </div>
                 </div>
             </div>
         </div>
