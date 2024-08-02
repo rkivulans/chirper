@@ -50,7 +50,7 @@
                                         </td>
                                         <td class="py-4 px-3 text-sm text-gray-500">{{ $product->description }}</td>
                                         <td class="py-4 px-3 text-sm text-gray-500">{{ $product->price }}</td>
-                                        <td class="py-4 px-3 text-sm {{ $product->quantity == 0 ? 'text-gray-500' : 'text-gray-900' }}">{{ $product->quantity }}</td>
+                                        <td class="py-4 px-3 text-sm {{ $product->quantity == 0 ? 'text-gray-900' : 'text-gray-500' }}">{{ $product->quantity }}</td>
                                     </tr>
                                 @endforeach
                             </tbody>

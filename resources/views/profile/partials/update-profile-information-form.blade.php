@@ -21,7 +21,16 @@
             <x-input-label for="name" :value="__('Name')" />
             <x-text-input id="name" name="name" type="text" class="mt-1 block w-full" :value="old('name', $user->name)" required autofocus autocomplete="name" />
             <x-input-error class="mt-2" :messages="$errors->get('name')" />
-        </div>
+        </div><br>
+
+        <label for="product-select">Izvēlies productu:</label><br>
+
+        <select name="products" id="product-select">
+        <option value="">--Please choose an option--</option>
+        @foreach ($products as $product)
+            <option value="product">{{ $product->name }} ({{ $product->price }})</option>
+        @endforeach
+        </select>
 
         <div>
             <x-input-label for="email" :value="__('Email')" />

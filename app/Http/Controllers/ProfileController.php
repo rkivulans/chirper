@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Product;
 use App\Http\Requests\ProfileUpdateRequest;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -16,7 +17,11 @@ class ProfileController extends Controller
      */
     public function edit(Request $request): View
     {
+        $products = Product::orderBy('name', 'asc')
+        ->get();
+
         return view('profile.edit', [
+            'products' => $products,
             'user' => $request->user(),
         ]);
     }
@@ -26,6 +31,7 @@ class ProfileController extends Controller
      */
     public function update(ProfileUpdateRequest $request): RedirectResponse
     {
+        //dd("esmu šeit");
         $request->user()->fill($request->validated());
 
         if ($request->user()->isDirty('email')) {
