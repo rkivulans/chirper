@@ -31,7 +31,6 @@ class ProfileController extends Controller
      */
     public function update(ProfileUpdateRequest $request): RedirectResponse
     {
-        //dd("esmu šeit");
         $request->user()->fill($request->validated());
 
         if ($request->user()->isDirty('email')) {
