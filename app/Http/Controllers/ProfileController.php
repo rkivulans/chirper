@@ -31,10 +31,17 @@ class ProfileController extends Controller
      */
     public function update(ProfileUpdateRequest $request): RedirectResponse
     {
-        $request->user()->fill($request->validated());
+        $user = $request->user(); // Nodrošina, ka $user mainīgais ir definēts
+        $user->fill($request->validated());
 
         if ($request->user()->isDirty('email')) {
             $request->user()->email_verified_at = null;
+        }
+
+        // Iestata lietotāja mīļākā produkta ID, ja tāds ir izvēlēts
+        $product_id = $request->input('product_id');
+        if ($product_id) {
+            $user->product_id = $product_id;
         }
 
         $request->user()->save();

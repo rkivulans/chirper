@@ -17,19 +17,19 @@
         @csrf
         @method('patch')
 
-<div>
+        <div>
             <x-input-label for="name" :value="__('Name')" />
             <x-text-input id="name" name="name" type="text" class="mt-1 block w-full" :value="old('name', $user->name)" required autofocus autocomplete="name" />
             <x-input-error class="mt-2" :messages="$errors->get('name')" />
         </div><br>
 
-        <label for="product-select">Izvēlies productu:</label><br>
-
-        <select name="products" id="product-select">
-        <option value="">--Please choose an option--</option>
-        @foreach ($products as $product)
-            <option value="product" {{ $product->id == $user->product_id ? 'selected' : '' }}>{{ $product->name }}  {{ $product->id == $user->product_id ? '!' : '' }}</option>
-        @endforeach
+        <label for="product-select">Izvēlies produktu:</label><br>
+        <select name="product_id" id="product-select">
+            <option value="">--Please choose an option--</option>
+            @foreach ($products as $product)
+            <!-- Pārbauda, vai produkta ID sakrīt ar lietotāja mīļākā produkta ID -->
+            <option value="{{ $product->id }}" {{ $product->id == $user->product_id ? 'selected' : '' }}>{{ $product->name }}  {{ $product->id == $user->product_id ? '!' : '' }}</option>
+            @endforeach
         </select>
 
         <div>
