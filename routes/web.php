@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\SellerController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ChirpController;
@@ -31,5 +32,10 @@ Route::resource('products', ProductController::class)
 Route::resource('sellers', SellerController::class)
     ->only(['index', 'show'])
     ->middleware(['auth', 'verified']);
+
+Route::resource('categories', CategoryController::class)
+    ->only(['index', 'store', 'edit', 'update', 'destroy'])
+    ->middleware(['auth', 'verified']);
+
 
 require __DIR__.'/auth.php';
