@@ -25,9 +25,9 @@
 
         <label for="product-select">Izvēlies produktu:</label><br>
         <select name="product_id" id="product-select">
-            <option value="">--Nav mīļākais produkts--</option>
+            <option value="" {{ $user->product_id == null ? 'selected' : '' }}>--Nav mīļākais produkts--</option>
             @foreach ($products as $product)
-            <!-- Pārbauda, vai produkta ID sakrīt ar lietotāja mīļākā produkta ID -->
+            {{-- Pārbauda, vai produkta ID sakrīt ar lietotāja mīļākā produkta ID --}}
             <option value="{{ $product->id }}" {{ $product->id == $user->product_id ? 'selected' : '' }}>{{ $product->name }}</option>
             @endforeach
         </select>
