@@ -6,7 +6,6 @@
 namespace Deployer;
 
 require 'recipe/laravel.php';
-require 'contrib/npm.php';
 
 // Config
 
