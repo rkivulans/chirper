@@ -29,9 +29,9 @@ class CategoryController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create(): View
+    public function create()
     {
-        return view('categories.create');
+        //
     }
 
     /**
@@ -51,9 +51,9 @@ class CategoryController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Category $category): View
+    public function show(Category $category)
     {
-        return view('categories.show', ['category' => $category]);
+        //
     }
 
     /**
