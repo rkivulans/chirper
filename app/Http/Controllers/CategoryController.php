@@ -5,8 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use Illuminate\Http\Response;
-use Illuminate\Support\Facades\Gate;
 use Illuminate\View\View;
 
 class CategoryController extends Controller
@@ -17,25 +15,23 @@ class CategoryController extends Controller
     public function index(Request $request): View
     {
         $sortField = $request->input('sort', 'name');
-    $sortDirection = $request->input('direction', 'asc');
+        $sortDirection = $request->input('direction', 'asc');
 
-    $categories = Category::with('user')
-        ->orderBy($sortField, $sortDirection)
-        ->get();
+        $categories = Category::orderBy($sortField, $sortDirection)->get();
 
-    return view('categories.index', [
-        'categories' => $categories,
-        'sortField' => $sortField,
-        'sortDirection' => $sortDirection,
-    ]);
+        return view('categories.index', [
+            'categories' => $categories,
+            'sortField' => $sortField,
+            'sortDirection' => $sortDirection,
+        ]);
     }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(): View
     {
-        //
+        return view('categories.create');
     }
 
     /**
@@ -46,18 +42,18 @@ class CategoryController extends Controller
         $validated = $request->validate([
             'name' => 'required|string|max:255',
         ]);
- 
-        $request->user()->categories()->create($validated);
- 
+
+        Category::create($validated);
+
         return redirect(route('categories.index'));
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Category $category)
+    public function show(Category $category): View
     {
-        //
+        return view('categories.show', ['category' => $category]);
     }
 
     /**
@@ -65,11 +61,7 @@ class CategoryController extends Controller
      */
     public function edit(Category $category): View
     {
-        Gate::authorize('update', $Category);
- 
-        return view('categories.edit', [
-            'category' => $category,
-        ]);
+        return view('categories.edit', ['category' => $category]);
     }
 
     /**
@@ -77,14 +69,12 @@ class CategoryController extends Controller
      */
     public function update(Request $request, Category $category): RedirectResponse
     {
-        Gate::authorize('update', $category);
- 
         $validated = $request->validate([
             'name' => 'required|string|max:255',
         ]);
- 
+
         $category->update($validated);
- 
+
         return redirect(route('categories.index'));
     }
 
@@ -93,10 +83,8 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category): RedirectResponse
     {
-        Gate::authorize('delete', $category);
- 
         $category->delete();
- 
+
         return redirect(route('categories.index'));
     }
 }
