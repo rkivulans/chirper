@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product;
+// Importē Category modeli
+use App\Models\Category;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -69,9 +71,14 @@ class ProductController extends Controller
     public function edit(Product $product): View
     {
         Gate::authorize('update', $product);
+        // Iegūstam visas kategorijas
+        $categories = Category::orderBy('name', 'asc')
+        ->get();
  
         return view('products.edit', [
             'product' => $product,
+            // Nododam kategorijas skatam
+            'categories' => $categories,
         ]);
     }
 
@@ -87,6 +94,8 @@ class ProductController extends Controller
             'description' => 'required|string|max:1000',
             'price' => 'required|numeric',
             'quantity' => 'required|integer',
+             // Validācija kategorijai
+            'category_id' => 'nullable|exists:categories,id',
         ]);
  
         $product->update($validated);

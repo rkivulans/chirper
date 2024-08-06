@@ -38,6 +38,15 @@
                     value="{{ old('quantity', $product->quantity) }}">
                 <x-input-error :messages="$errors->get('quantity')" class="mt-2" />
             </div>
+            <div>
+            <label for="category-select">Izvēlies kategoriju:</label><br>
+                <select name="category_id" id="category-select">
+                    <option value="" {{ $product->category_id == null ? 'selected' : '' }}>--Nav kategorija--</option>
+                    @foreach ($categories as $category)
+                    <option value="{{ $category->id }}" {{ $category->id == $product->category_id ? 'selected' : '' }}>{{ $category->name }}</option>
+                    @endforeach
+                </select>
+            </div>
             <div class="mt-4 space-x-2">
                 <x-primary-button>{{ __('Saglabāt') }}</x-primary-button>
                 <a href="{{ route('products.index') }}" class="text-gray-600 hover:text-gray-900">{{ __('Atcelt') }}</a>
