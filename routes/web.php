@@ -1,10 +1,10 @@
 <?php
 
 use App\Http\Controllers\CategoryController;
-use App\Http\Controllers\SellerController;
-use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ChirpController;
+use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\SellerController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -36,6 +36,5 @@ Route::resource('sellers', SellerController::class)
 Route::resource('categories', CategoryController::class)
     ->only(['index', 'store', 'edit', 'update', 'destroy'])
     ->middleware(['auth', 'verified']);
-
 
 require __DIR__.'/auth.php';

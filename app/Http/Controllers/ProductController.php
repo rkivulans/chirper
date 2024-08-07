@@ -2,12 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Product;
-// Importē Category modeli
 use App\Models\Category;
+// Importē Category modeli
+use App\Models\Product;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\View\View;
 
@@ -17,20 +16,20 @@ class ProductController extends Controller
      * Display a listing of the resource.
      */
     public function index(Request $request): View
-{
-    $sortField = $request->input('sort', 'name'); // default sort field
-    $sortDirection = $request->input('direction', 'asc'); // default sort direction
+    {
+        $sortField = $request->input('sort', 'name'); // default sort field
+        $sortDirection = $request->input('direction', 'asc'); // default sort direction
 
-    $products = Product::with('user')
-        ->orderBy($sortField, $sortDirection)
-        ->get();
+        $products = Product::with('user')
+            ->orderBy($sortField, $sortDirection)
+            ->get();
 
-    return view('products.index', [
-        'products' => $products,
-        'sortField' => $sortField,
-        'sortDirection' => $sortDirection,
-    ]);
-}
+        return view('products.index', [
+            'products' => $products,
+            'sortField' => $sortField,
+            'sortDirection' => $sortDirection,
+        ]);
+    }
 
     /**
      * Show the form for creating a new resource.
@@ -51,9 +50,9 @@ class ProductController extends Controller
             'price' => 'required|numeric',
             'quantity' => 'required|integer',
         ]);
- 
+
         $request->user()->products()->create($validated);
- 
+
         return redirect(route('products.index'));
     }
 
@@ -73,8 +72,8 @@ class ProductController extends Controller
         Gate::authorize('update', $product);
         // Iegūstam visas kategorijas
         $categories = Category::orderBy('name', 'asc')
-        ->get();
- 
+            ->get();
+
         return view('products.edit', [
             'product' => $product,
             // Nododam kategorijas skatam
@@ -88,18 +87,18 @@ class ProductController extends Controller
     public function update(Request $request, Product $product): RedirectResponse
     {
         Gate::authorize('update', $product);
- 
+
         $validated = $request->validate([
             'name' => 'required|string|max:255',
             'description' => 'required|string|max:1000',
             'price' => 'required|numeric',
             'quantity' => 'required|integer',
-             // Validācija kategorijai
+            // Validācija kategorijai
             'category_id' => 'nullable|exists:categories,id',
         ]);
- 
+
         $product->update($validated);
- 
+
         return redirect(route('products.index'));
     }
 
@@ -109,9 +108,9 @@ class ProductController extends Controller
     public function destroy(Product $product): RedirectResponse
     {
         Gate::authorize('delete', $product);
- 
+
         $product->delete();
- 
+
         return redirect(route('products.index'));
     }
 }

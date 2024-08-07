@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Product;
 use App\Http\Requests\ProfileUpdateRequest;
+use App\Models\Product;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -18,7 +18,7 @@ class ProfileController extends Controller
     public function edit(Request $request): View
     {
         $products = Product::orderBy('name', 'asc')
-        ->get();
+            ->get();
 
         return view('profile.edit', [
             'products' => $products,

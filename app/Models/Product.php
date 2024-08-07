@@ -24,6 +24,7 @@ class Product extends Model
     {
         return $this->belongsTo(User::class);
     }
+
     // Definē saistību starp Product un Category modeļiem
     // Norāda, ka katrs produkts pieder vienai kategorijai
     public function category(): BelongsTo
