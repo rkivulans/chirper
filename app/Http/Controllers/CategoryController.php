@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\Product; // Importē Product modeli
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
@@ -83,8 +84,12 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category): RedirectResponse
     {
+        // Noņem kategoriju no visiem produktiem, kuriem šī kategorija ir pievienota
+        Product::where('category_id', $category->id)->update(['category_id' => null]);
+
+        // Dzēš kategoriju
         $category->delete();
 
-        return redirect(route('categories.index'));
+        return redirect()->route('categories.index')->with('success', 'Kategorija veiksmīgi dzēsta.');
     }
 }

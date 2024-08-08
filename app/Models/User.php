@@ -60,9 +60,6 @@ class User extends Authenticatable
 
     public function favoriteProduct(): BelongsTo
     {
-        // izsaucot $user->favoriteProduct, laravel meklēs:
-        //  - tabulā 'products' (jo vārds Product::class) produktu, kuram 'id' ir
-        //  - no šīs tabulas 'user' (jo klasses User) kolonna 'product_id'
         return $this->belongsTo(Product::class, 'product_id');
     }
 }

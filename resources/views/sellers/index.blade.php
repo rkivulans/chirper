@@ -18,6 +18,9 @@
                                         </a>
                                     </th>
                                     <th scope="col" class="py-3.5 px-3 text-left text-sm font-semibold text-gray-900">
+                                        Mīļākais Produkts
+                                    </th>
+                                    <th scope="col" class="py-3.5 px-3 text-left text-sm font-semibold text-gray-900">
                                         <a href="{{ route('sellers.index', ['sort' => 'email', 'direction' => $sortField === 'email' && $sortDirection === 'asc' ? 'desc' : 'asc']) }}">
                                             Epasts
                                             @if ($sortField === 'email' && $sortDirection === 'asc') ↑ @endif
@@ -31,6 +34,13 @@
                                     <tr>
                                         <td class="py-4 px-3 text-sm font-medium text-gray-900">
                                             <a href="{{ route('sellers.show', $seller) }}" class="text-indigo-600 hover:text-indigo-900">{{ $seller->name }}</a>
+                                            @if ($seller->favoriteProduct)
+                                                {{ $seller->favoriteProduct->name }}
+                                            @else
+                                                Nav mīļākais prod
+                                            @endif
+                                        </td>
+                                        <td class="py-4 px-3 text-sm text-gray-500">
                                             @if ($seller->favoriteProduct)
                                                 {{ $seller->favoriteProduct->name }}
                                             @else

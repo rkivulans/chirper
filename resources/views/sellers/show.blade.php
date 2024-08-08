@@ -46,6 +46,9 @@
                                     <tr class="{{ $product->quantity == 0 ? 'bg-gray-100' : '' }}">
                                         <td class="py-4 px-3 text-sm font-medium text-gray-900">
                                             {{ $product->name }}
+                                            @isset($product->category)
+                                                <span class="ml-2 text-green-600">({{ $product->category->name }})</span>
+                                            @endisset
                                             <span class="text-red-600">{{ $product->quantity == 0 ? '(!)' : '' }}</span>
                                         </td>
                                         <td class="py-4 px-3 text-sm text-gray-500">{{ $product->description }}</td>
