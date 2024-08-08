@@ -5,6 +5,7 @@ namespace App\Models;
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
@@ -55,5 +56,13 @@ class User extends Authenticatable
     public function products(): HasMany
     {
         return $this->hasMany(Product::class);
+    }
+
+    public function favoriteProduct(): BelongsTo
+    {
+        // izsaucot $user->favoriteProduct, laravel meklēs:
+        //  - tabulā 'products' (jo vārds Product::class) produktu, kuram 'id' ir
+        //  - no šīs tabulas 'user' (jo klasses User) kolonna 'product_id'
+        return $this->belongsTo(Product::class, 'product_id');
     }
 }
