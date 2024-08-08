@@ -34,11 +34,6 @@
                                     <tr>
                                         <td class="py-4 px-3 text-sm font-medium text-gray-900">
                                             <a href="{{ route('sellers.show', $seller) }}" class="text-indigo-600 hover:text-indigo-900">{{ $seller->name }}</a>
-                                            @if ($seller->favoriteProduct)
-                                                {{ $seller->favoriteProduct->name }}
-                                            @else
-                                                Nav mīļākais prod
-                                            @endif
                                         </td>
                                         <td class="py-4 px-3 text-sm text-gray-500">
                                             @if ($seller->favoriteProduct)
