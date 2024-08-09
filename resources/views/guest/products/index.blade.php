@@ -1,4 +1,4 @@
-<x-guest-layout>
+<x-public-layout>
     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
         <div class="prose">
             <h1>eBay</h1>
@@ -64,4 +64,4 @@
             </div>
         </div>
     </div>
-</x-guest-layout>
+</x-public-layout>
