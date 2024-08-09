@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ChirpController;
+use App\Http\Controllers\GuestProductController;
+use App\Http\Controllers\GuestSellerController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SellerController;
@@ -36,5 +38,13 @@ Route::resource('sellers', SellerController::class)
 Route::resource('categories', CategoryController::class)
     ->only(['index', 'store', 'edit', 'update', 'destroy'])
     ->middleware(['auth', 'verified']);
+
+// Maršruti viesu produktiem
+Route::resource('guest-products', GuestProductController::class)
+    ->only(['index']);
+
+// Maršruti viesu pārdevējiem
+Route::resource('guest-sellers', GuestSellerController::class)
+    ->only(['index', 'show']);
 
 require __DIR__.'/auth.php';
