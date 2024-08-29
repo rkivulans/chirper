@@ -19,13 +19,13 @@
 
         <div>
             <x-input-label for="name" :value="__('Name')" />
-            <x-text-input id="name" name="name" type="text" class="mt-1 block w-full" :value="old('name', $user->name)" required autofocus autocomplete="name" />
+            <x-text-input id="name" name="name" type="text" class="mt-1 block w-full" :value="old('name', $user->name)" autofocus autocomplete="name" />
             <x-input-error class="mt-2" :messages="$errors->get('name')" />
         </div><br>
 
-        <label for="product-select">Izvēlies produktu:</label><br>
+        <label for="product-select">{{ __("Choose a Product:") }}</label><br>
         <select name="product_id" id="product-select">
-            <option value="" {{ $user->product_id == null ? 'selected' : '' }}>--Nav mīļākais produkts--</option>
+            <option value="" {{ $user->product_id == null ? 'selected' : '' }}>--{{ __("Not a Favorite Product") }}--</option>
             @foreach ($products as $product)
             {{-- Pārbauda, vai produkta ID sakrīt ar lietotāja mīļākā produkta ID --}}
             <option value="{{ $product->id }}" {{ $product->id == $user->product_id ? 'selected' : '' }}>{{ $product->name }}</option>
@@ -34,7 +34,7 @@
 
         <div>
             <x-input-label for="email" :value="__('Email')" />
-            <x-text-input id="email" name="email" type="email" class="mt-1 block w-full" :value="old('email', $user->email)" required autocomplete="username" />
+            <x-text-input id="email" name="email" type="email" class="mt-1 block w-full" :value="old('email', $user->email)" autocomplete="username" />
             <x-input-error class="mt-2" :messages="$errors->get('email')" />
 
             @if ($user instanceof \Illuminate\Contracts\Auth\MustVerifyEmail && ! $user->hasVerifiedEmail())

@@ -12,8 +12,8 @@
                 <x-input-error :messages="$errors->get('name')" class="mt-2" />
             </div>
             <div class="mt-4 space-x-2">
-                <x-primary-button>{{ __('Saglabāt') }}</x-primary-button>
-                <a href="{{ route('categories.index') }}" class="text-gray-600 hover:text-gray-900">{{ __('Atcelt') }}</a>
+                <x-primary-button>{{ __('Save') }}</x-primary-button>
+                <a href="{{ route('categories.index') }}" class="text-gray-600 hover:text-gray-900">{{ __('Cancel') }}</a>
             </div>
         </form>
     </div>

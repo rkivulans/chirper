@@ -53,7 +53,7 @@ class ProductController extends Controller
 
         $request->user()->products()->create($validated);
 
-        return redirect(route('products.index'));
+        return redirect(route('products.index'))->with('added', __('Product successfully added.'));
     }
 
     /**
@@ -99,7 +99,7 @@ class ProductController extends Controller
 
         $product->update($validated);
 
-        return redirect(route('products.index'));
+        return redirect(route('products.index'))->with('updated', __('Product successfully updated.'));
     }
 
     /**
@@ -111,6 +111,6 @@ class ProductController extends Controller
 
         $product->delete();
 
-        return redirect(route('products.index'));
+        return redirect()->route('products.index')->with('deleted', __('Product successfully deleted.'));
     }
 }

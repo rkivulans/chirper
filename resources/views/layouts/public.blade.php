@@ -14,17 +14,17 @@
         <div class="max-w-7xl mx-auto bg-blue-50 shadow rounded-b">
             <nav class="p-4 flex flex-row justify-between">
                 <div class="flex gap-8">
-                    <a href="{{ route('guest-products.index') }}">Shop</a>
-                    <a href="{{ route('guest-sellers.index') }}">Pārdevēji</a>
+                    <a href="{{ route('guest-products.index') }}">{{ __("Shop") }}</a>
+                    <a href="{{ route('guest-sellers.index') }}">{{ __("Merchants") }}</a>
                 </div>
                 <div class="flex gap-8">
                     @auth
-                        <a href="{{ url('/dashboard') }}">Dashboard</a>
+                        <a href="{{ url('/dashboard') }}">{{ __("Dashboard") }}</a>
                     @else
-                        <a href="{{ route('login') }}">Log in</a>
+                        <a href="{{ route('login') }}">{{ __("Log in") }}</a>
 
                         @if (Route::has('register'))
-                            <a href="{{ route('register') }}">Register</a>
+                            <a href="{{ route('register') }}">{{ __("Register") }}</a>
                         @endif
                     @endauth
                 </div>

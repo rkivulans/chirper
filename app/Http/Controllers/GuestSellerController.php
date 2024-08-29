@@ -24,13 +24,13 @@ class GuestSellerController extends Controller
     /**
      * Display the specified seller and their products.
      */
-    public function show(User $seller, Request $request): View
+    public function show(User $guest_seller, Request $request): View
     {
         $sortField = $request->input('sort', 'name');
         $sortDirection = $request->input('direction', 'asc');
 
-        $products = $seller->products()->orderBy($sortField, $sortDirection)->get();
+        $products = $guest_seller->products()->orderBy($sortField, $sortDirection)->get();
 
-        return view('guest.sellers.show', compact('seller', 'products', 'sortField', 'sortDirection'));
+        return view('guest.sellers.show', compact('guest_seller', 'products', 'sortField', 'sortDirection'));
     }
 }

@@ -1,8 +1,8 @@
-<x-guest-layout>
+<x-public-layout>
     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
         <div class="prose">
-            <h1>{{ $seller->name }}</h1>
-            <p>{{ $seller->email }}</p>
+            <h1>{{ $guest_seller->name }}</h1>
+            <p>{{ $guest_seller->email }}</p>
         </div>
         <div class="mt-8 flow-root">
             <div class="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
@@ -12,29 +12,29 @@
                             <thead class="bg-gray-50">
                                 <tr>
                                     <th scope="col" class="py-3.5 px-3 text-left text-sm font-semibold text-gray-900">
-                                        <a href="{{ route('guest-sellers.show', ['guest_seller' => $seller->id, 'sort' => 'name', 'direction' => $sortField === 'name' && $sortDirection === 'asc' ? 'desc' : 'asc']) }}">
-                                            Prece
+                                    <a href="{{ route('guest-sellers.show', ['guest_seller' => $guest_seller->id, 'sort' => 'name', 'direction' => $sortField === 'name' && $sortDirection === 'asc' ? 'desc' : 'asc']) }}">
+                                        {{ __("Product") }}
                                             @if ($sortField === 'name' && $sortDirection === 'asc') ↑ @endif
                                             @if ($sortField === 'name' && $sortDirection === 'desc') ↓ @endif
                                         </a>
                                     </th>
                                     <th scope="col" class="py-3.5 px-3 text-left text-sm font-semibold text-gray-900">
-                                        <a href="{{ route('guest-sellers.show', ['guest_seller' => $seller->id, 'sort' => 'description', 'direction' => $sortField === 'description' && $sortDirection === 'asc' ? 'desc' : 'asc']) }}">
-                                            Apraksts
+                                    <a href="{{ route('guest-sellers.show', ['guest_seller' => $guest_seller->id, 'sort' => 'description', 'direction' => $sortField === 'description' && $sortDirection === 'asc' ? 'desc' : 'asc']) }}">
+                                        {{ __("Description") }}
                                             @if ($sortField === 'description' && $sortDirection === 'asc') ↑ @endif
                                             @if ($sortField === 'description' && $sortDirection === 'desc') ↓ @endif
                                         </a>
                                     </th>
                                     <th scope="col" class="py-3.5 px-3 text-left text-sm font-semibold text-gray-900">
-                                        <a href="{{ route('guest-sellers.show', ['guest_seller' => $seller->id, 'sort' => 'price', 'direction' => $sortField === 'price' && $sortDirection === 'asc' ? 'desc' : 'asc']) }}">
-                                            Cena
+                                    <a href="{{ route('guest-sellers.show', ['guest_seller' => $guest_seller->id, 'sort' => 'price', 'direction' => $sortField === 'price' && $sortDirection === 'asc' ? 'desc' : 'asc']) }}">
+                                        {{ __("Price") }}
                                             @if ($sortField === 'price' && $sortDirection === 'asc') ↑ @endif
                                             @if ($sortField === 'price' && $sortDirection === 'desc') ↓ @endif
                                         </a>
                                     </th>
                                     <th scope="col" class="py-3.5 px-3 text-left text-sm font-semibold text-gray-900">
-                                        <a href="{{ route('guest-sellers.show', ['guest_seller' => $seller->id, 'sort' => 'quantity', 'direction' => $sortField === 'quantity' && $sortDirection === 'asc' ? 'desc' : 'asc']) }}">
-                                            Skaits
+                                    <a href="{{ route('guest-sellers.show', ['guest_seller' => $guest_seller->id, 'sort' => 'quantity', 'direction' => $sortField === 'quantity' && $sortDirection === 'asc' ? 'desc' : 'asc']) }}">
+                                        {{ __("Quantity") }}
                                             @if ($sortField === 'quantity' && $sortDirection === 'asc') ↑ @endif
                                             @if ($sortField === 'quantity' && $sortDirection === 'desc') ↓ @endif
                                         </a>
@@ -63,4 +63,4 @@
             </div>
         </div>
     </div>
-</x-guest-layout>
+</x-public-layout>

@@ -13,6 +13,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/public', function () {
+    return view('layouts.public')->with('slot', 'Laipni lūdzam publiskajā lapā!');
+})->name('public.home');
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');

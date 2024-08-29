@@ -1,7 +1,7 @@
 <x-app-layout>
     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
         <div class="prose">
-            <h1>Veikals</h1>
+            <h1>{{ __("Merchants") }}</h1>
         </div>
         <div class="mt-8 flow-root">
             <div class="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
@@ -12,17 +12,17 @@
                                 <tr>
                                     <th scope="col" class="py-3.5 px-3 text-left text-sm font-semibold text-gray-900">
                                         <a href="{{ route('sellers.index', ['sort' => 'name', 'direction' => $sortField === 'name' && $sortDirection === 'asc' ? 'desc' : 'asc']) }}">
-                                            Vārds
+                                            {{ __("Name") }}
                                             @if ($sortField === 'name' && $sortDirection === 'asc') ↑ @endif
                                             @if ($sortField === 'name' && $sortDirection === 'desc') ↓ @endif
                                         </a>
                                     </th>
                                     <th scope="col" class="py-3.5 px-3 text-left text-sm font-semibold text-gray-900">
-                                        Mīļākais Produkts
+                                        {{ __("Favorite Product") }}
                                     </th>
                                     <th scope="col" class="py-3.5 px-3 text-left text-sm font-semibold text-gray-900">
                                         <a href="{{ route('sellers.index', ['sort' => 'email', 'direction' => $sortField === 'email' && $sortDirection === 'asc' ? 'desc' : 'asc']) }}">
-                                            Epasts
+                                            {{ __("Email") }}
                                             @if ($sortField === 'email' && $sortDirection === 'asc') ↑ @endif
                                             @if ($sortField === 'email' && $sortDirection === 'desc') ↓ @endif
                                         </a>
@@ -39,7 +39,7 @@
                                             @if ($seller->favoriteProduct)
                                                 {{ $seller->favoriteProduct->name }}
                                             @else
-                                                Nav mīļākais prod
+                                                {{ __("Not a Favorite Product") }}
                                             @endif
                                         </td>
                                         <td class="py-4 px-3 text-sm text-gray-500">{{ $seller->email }}</td>

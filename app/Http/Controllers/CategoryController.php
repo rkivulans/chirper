@@ -46,7 +46,7 @@ class CategoryController extends Controller
 
         Category::create($validated);
 
-        return redirect(route('categories.index'));
+        return redirect(route('categories.index'))->with('added', __('Category successfully added.'));
     }
 
     /**
@@ -76,7 +76,7 @@ class CategoryController extends Controller
 
         $category->update($validated);
 
-        return redirect(route('categories.index'));
+        return redirect(route('categories.index'))->with('updated', __('Category successfully updated.'));
     }
 
     /**
@@ -90,6 +90,6 @@ class CategoryController extends Controller
         // Dzēš kategoriju
         $category->delete();
 
-        return redirect()->route('categories.index')->with('success', 'Kategorija veiksmīgi dzēsta.');
+        return redirect()->route('categories.index')->with('deleted', __('Category successfully deleted.'));
     }
 }
